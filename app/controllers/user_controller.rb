@@ -3,6 +3,9 @@ class UserController < ApplicationController
     def create
     end
 
+    def destroy
+    end
+
     private
 
     def find_user
