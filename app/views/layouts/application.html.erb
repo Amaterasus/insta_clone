@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InstaClone 3000</title>
+    <title>InstaClone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,42 @@
   </head>
 
   <body>
+      <header>
+
+      <div>
+        <% if logged_in? %>
+          <p>User: @<%= current_user.user_name %></p>
+          <%= form_tag('/logout') do %>
+            <%= submit_tag 'Log Out' %>
+          <% end %>
+        <% else %>
+          <p><%= link_to 'Log In', login_path %></p>
+        <% end %>
+      </div>
+
+
+
+
+        <div style="color: red;">
+          <% if flash[:errors] %>
+              <ul>
+                <% flash[:errors].each do |error| %>
+                  <li>
+                    <%= error %>
+                  </li>
+                <% end %>
+              </ul>
+          <% end %>
+        </div>
+
+
+      </header>
+
+
     <%= yield %>
+
+
   </body>
+
+
 </html>

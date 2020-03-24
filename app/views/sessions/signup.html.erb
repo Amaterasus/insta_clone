@@ -1,0 +1,17 @@
+<h2> Sign Up Page </h2>
+<%= form_tag('/signup') do %>
+
+  <%= label_tag :username %>
+  <%= text_field_tag '[user]user_name' %>
+  <br>
+
+  <%= label_tag :password %>
+  <%= password_field_tag '[user]password' %>
+  <br>
+
+  <%= label_tag :password_confirmation %>
+  <%= password_field_tag '[user]password_confirmation' %>
+  <br>
+
+  <%= submit_tag 'Sign Up' %>
+<% end %>
