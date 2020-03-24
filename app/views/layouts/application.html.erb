@@ -14,7 +14,7 @@
 
       <div>
         <% if logged_in? %>
-          <p>User: <%= current_user.user_name %></p>
+          <p>User: @<%= current_user.user_name %></p>
           <%= form_tag('/logout') do %>
             <%= submit_tag 'Log Out' %>
           <% end %>
