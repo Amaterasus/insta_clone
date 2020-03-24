@@ -1,0 +1,9 @@
+<%= link_to "Create New Post", new_post_path %>
+
+<h2>All Posts</h2>
+
+<% @posts.each do |post| %>
+    <h3><%= link_to post.title, post %></h3><br>
+    <%= image_tag(post.image, height: '600', width: '800')%>
+    <br>
+<% end %>
