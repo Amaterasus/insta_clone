@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style>
-      
+
     </style>
   </head>
 
@@ -20,16 +20,19 @@
 
       <div>
         <% if logged_in? %>
-          <p>User: @<%= current_user.user_name %></p>
+
+          <p>@<%= current_user.user_name %> <%= link_to "My Profile",  user_path(current_user) %> <%= link_to "Edit Profile", edit_user_path(current_user) %></p>
+
           <%= form_tag('/logout') do %>
             <%= submit_tag 'Log Out' %>
           <% end %>
-            <% if !current_page?(user_path(current_user))  %>
-            <%= link_to "My Profile",  user_path(current_user) %> 
-            <%end%>
+
         <% else %>
+
           <p><%= link_to 'Log In', login_path %></p>
+          
         <% end %>
+
       </div>
 
 

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :logged_in?, :current_user, :is_user?, :is_followed_by?
+    helper_method :logged_in?, :current_user, :is_user?, :is_followed_by?, :is_liked_by?
 
     def current_user
         # In sessions updates the user to be this user
@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
     def is_followed_by?(page_user)
         # Checks if you are currently following or not
         Follow.select { |f| (f.follower == current_user) && (f.followee == page_user) } != []
+    end
+
+    def is_liked_by?(page_post)
+        # Checks if you are liking
+        Like.select { |f| (f.post == page_post) && (f.user == current_user) } != []
     end
 
     def is_user?(page_user)

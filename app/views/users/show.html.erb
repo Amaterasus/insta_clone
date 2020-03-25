@@ -1,12 +1,12 @@
 <h2><%= @user.user_name %></h2>
-    <p>Followers: <%=link_to @user.followers.count, user_followers_path  %></p> 
-    <p>Following: <%= @user.followees.count %></p> 
-    <p>Posts: <%= @user.posts.count %></p> 
-
-
+<h3><%= @user.bio %></h3>
+    <p>
+    Posts: <%= @user.posts.count %> 
+    <%= link_to "Followers:", user_followers_path  %> <%= @user.followers.count %> 
+    <%= link_to "Following:", user_followees_path %> <%= @user.followees.count %>  
+    </p> 
 
     <% if is_user?(@user) %>
-        EDIT
     <% else %>
         <% if is_followed_by?(@user) %>
             <%= button_to "Unfollow", unfollow_path(@user.id) %>
@@ -14,7 +14,6 @@
             <%= button_to "Follow", follow_path(@user.id) %>
         <% end %>
     <% end %>
-
     
 <% @posts.each do |post| %>
     <h3><%= link_to post.title, post %></h3><br>

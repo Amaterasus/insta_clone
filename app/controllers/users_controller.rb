@@ -1,6 +1,20 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:index, :show, :edit, :update, :destroy]
-  before_action :find_user, only: [:show,:user_followers,:user_followees,:follow,:unfollow]
+  before_action :find_user, only: [:show, :user_followers, :user_followees, :follow, :unfollow, :edit, :update]
+
+  def edit
+  end
+
+  def update
+    @user.update(edit_user_params)
+
+    if @user.valid?
+      redirect_to @user
+    else
+      flash[:errors] = @user.errors.full_messages
+      render :edit
+    end
+  end
 
   def create
     @user = User.create user_params
@@ -17,22 +31,16 @@ class UsersController < ApplicationController
   def destroy
   end
 
-
-
-
-
-
-
-
   def user_followers
-    @users = Follow.select{|f| f.followee==@user}
+    @users = Follow.select{ |f| f.followee == @user }
     render :index
   end 
   
   def user_followees
-    @users = Follow.select{|f| f.followers==@user}
-    render :index
+    @users = Follow.select{ |f| f.follower == @user }
+    render :followings
   end 
+
   def follow
     Follow.create(follower: current_user, followee: @user)
     redirect_to @user
@@ -52,4 +60,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:user_name, :password, :password_confirmation, :bio)
   end
+
+  def edit_user_params
+    params.require(:user).permit(:bio)
+  end
+
 end

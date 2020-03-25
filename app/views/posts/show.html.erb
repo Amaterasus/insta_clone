@@ -3,8 +3,23 @@
 <% if current_user == @post.user %>
     <%= link_to "Edit Post", edit_post_path %>
 <% end %>
+
 <div class='post'>
-<h2><%= @post.title%></h2>
-<%= image_tag(@post.image) %>
+
+    <h2><%= @post.title%></h2>
+
+    <%= image_tag(@post.image) %>
+
+    <p><%= @post.likes.count %> likes</p>
+
+    <% if is_user?(@post.user) %>
+    <% else %>
+        <% if is_liked_by?(@post) %>
+            <%= button_to "Unlike", unlike_path(@post.id) %>
+        <% else %>
+            <%= button_to "Like", like_path(@post.id) %>
+        <% end %>
+    <% end %>
+
 </div>
 

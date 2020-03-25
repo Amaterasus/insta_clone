@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authorized
-  before_action :find_post, only: [:show, :edit, :update]
+  before_action :find_post, only: [:show, :edit, :update, :like, :unlike]
 
   def index
     @posts = Post.all
@@ -39,6 +39,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    Like.create(user: current_user, post: @post)
+    redirect_to @post
+  end
+
+  def unlike
+    Like.find_by(user: current_user, post: @post).destroy
+    redirect_to @post
+  end
+
   def destroy
   end
 
@@ -55,4 +65,5 @@ class PostsController < ApplicationController
   def edit_post_params
     params.require(:post).permit(:title)
   end
+
 end
