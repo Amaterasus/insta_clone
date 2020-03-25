@@ -9,10 +9,8 @@
         EDIT
     <% else %>
         <% if is_followed_by?(@user) %>
-            UNFOLLOW
             <%= button_to "Unfollow", unfollow_path(@user.id) %>
         <% else %>
-            FOLLOW 
             <%= button_to "Follow", follow_path(@user.id) %>
         <% end %>
     <% end %>
