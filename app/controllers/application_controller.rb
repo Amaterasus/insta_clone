@@ -24,22 +24,13 @@ class ApplicationController < ActionController::Base
     end
 
     def is_followed_by?(page_user)
-        if Follow.select { |f| (f.follower == current_user) && (f.followee == page_user) } == []
-            # Be able to follow
-            false
-        else
-            # Be able to unfollow
-            true
-        end
+        # Checks if you are currently following or not
+        Follow.select { |f| (f.follower == current_user) && (f.followee == page_user) } != []
     end
 
     def is_user?(page_user)
-        if page_user.id == current_user.id 
-            # If true will be able to edit profile but not follow
-            # And vice versa
-            true
-        else
-        end
+        # Checks to see if you can edit or follow a user
+        page_user.id == current_user.id 
     end
 
 end
