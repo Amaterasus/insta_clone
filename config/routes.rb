@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   
   get "/users/:id/user_followers", to: "users#user_followers", as: "user_followers"
   get "/users/:id/user_followees", to: "users#user_followees", as: "user_followees"
+  post "users/:id/follow", to: "users#follow", as: "follow"
+  post "users/:id/unfollow", to: "users#unfollow", as: "unfollow"
+
 end
