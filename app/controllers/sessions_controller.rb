@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         # Finds user by matching usernames passed in
         # Authenticates it with the password provided
         # Either says failed or goes to their 'home' page (and starts the session)
-        @user = User.find_by(user_name: params[:user][:user_name])
+        @user = User.find_by(user_name: params[:user][:user_name].downcase)
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id 
             # Will put my followers posts path or soemthing like that
