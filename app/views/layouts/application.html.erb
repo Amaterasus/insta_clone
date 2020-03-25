@@ -18,6 +18,9 @@
           <%= form_tag('/logout') do %>
             <%= submit_tag 'Log Out' %>
           <% end %>
+            <% if !current_page?(user_path(current_user))  %>
+            <%= link_to "My Profile",  user_path(current_user) %> 
+            <%end%>
         <% else %>
           <p><%= link_to 'Log In', login_path %></p>
         <% end %>
