@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     def logout
         # Changes session to nil i.e. logging out
         session[:user_id] = nil
-        redirect_to root_path
+        redirect_to login_path
     end
 
     def login_verify
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id 
             # Will put my followers posts path or soemthing like that
-            redirect_to root_path
+            redirect_to posts_path
         else
             flash[:errors] ||= []
             flash[:errors] << "Username or Password is incorrect. Please Try Again." 

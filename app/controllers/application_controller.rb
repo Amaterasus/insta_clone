@@ -16,9 +16,11 @@ class ApplicationController < ActionController::Base
 
     def authorized
         # If allowed to be on site
-        flash[:errors] ||= []
-        flash[:errors] << "You must Log In to use InstaClone."
-        redirect_to login_path unless logged_in?
+        unless logged_in?
+            flash[:errors] ||= []
+            flash[:errors] << "You must Log In to use InstaClone."
+            redirect_to login_path
+        end
     end
 
 end

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    before_action :authorized
     before_action :find_post, only: [:show, :edit, :update]
 
     def index
@@ -13,11 +14,12 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.new(post_params)
+        @post = Post.new(new_post_params)
 
         if @post.save
             redirect_to @post
         else
+            flash[:errors] = @post.errors.full_messages
             render :new
         end
     end
@@ -26,11 +28,12 @@ class PostsController < ApplicationController
     end
 
     def update
-        @post.update(post_params)
+        @post.update(edit_post_params)
 
         if @post.valid?
             redirect_to @post
         else
+            flash[:errors] = @post.errors.full_messages
             render :edit
         end
     end
@@ -45,7 +48,11 @@ class PostsController < ApplicationController
         @post = Post.find_by(id: params[:id])
     end
 
-    def post_params
+    def new_post_params
         params.require(:post).permit(:title, :image, :user_id)
+    end
+
+    def edit_post_params
+        params.require(:post).permit(:title, :user_id)
     end
 end
