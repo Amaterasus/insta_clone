@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:index, :show, :edit, :update, :destroy]
+    before_action :find_user, only: [:show]
 
   def create
     @user = User.create user_params
   end
 
-  def destroy
-  end
+    def show 
+        
+    end
+
+    def destroy
+    end
 
   private
 
