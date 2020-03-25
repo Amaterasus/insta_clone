@@ -9,4 +9,8 @@ Rails.application.routes.draw do
 
   get "/signup", to: "sessions#signup"
   post "/signup", to: "users#create"
+
+  post "users/:id/follow", to: "users#follow", as: "follow"
+  post "users/:id/unfollow", to: "users#unfollow", as: "unfollow"
+
 end

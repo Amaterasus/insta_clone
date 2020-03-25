@@ -1,3 +1,16 @@
 <h2><%= @user.user_name %></h2>
     <p>Followers: <%= @user.followers.count %></p> <p>Following: <%= @user.followees.count %></p> 
 
+
+
+    <% if is_user?(@user) %>
+        EDIT
+    <% else %>
+        <% if is_followed_by?(@user) %>
+            UNFOLLOW
+            <%= button_to "Unfollow", unfollow_path(@user.id) %>
+        <% else %>
+            FOLLOW 
+            <%= button_to "Follow", follow_path(@user.id) %>
+        <% end %>
+    <% end %>

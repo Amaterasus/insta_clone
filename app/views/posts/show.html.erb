@@ -3,7 +3,8 @@
 <% if current_user == @post.user %>
     <%= link_to "Edit Post", edit_post_path %>
 <% end %>
-
-<h2>Title <%= @post.title%></h2>
+<div class='post'>
+<h2 id='' >Title <%= @post.title%></h2>
 
 <%= image_tag(@post.image) %>
+</div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorized, only: [:index, :show, :edit, :update, :destroy]
-  before_action :find_user, only: [:show]
+  before_action :find_user, only: [:show, :follow, :unfollow]
 
   def create
     @user = User.create user_params
@@ -14,6 +14,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  def follow
+    Follow.create(follower: current_user, followee: @user)
+    redirect_to @user
+  end
+
+  def unfollow
+    Follow.find_by(follower: current_user, followee: @user).destroy
+    redirect_to @user
   end
 
   private
