@@ -1,5 +1,9 @@
 <%= link_to "All Posts", posts_path %>
 
+<% if current_user == @post.user %>
+    <%= link_to "Edit Post", edit_post_path %>
+<% end %>
+
 <h2>Title <%= @post.title%></h2>
 
 <%= image_tag(@post.image) %>

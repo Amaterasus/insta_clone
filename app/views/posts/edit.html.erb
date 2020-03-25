@@ -1,9 +1,10 @@
+<br>
+<%= link_to "All Posts", posts_path %>
+<br><br>    
+
 <%= form_for @post do |f| %>
     <%= f.label :title %>
     <%= f.text_field :title %>
-
-    <%= f.label :image %>
-    <%= f.text_field :image %>
 
     <%= f.submit %>
 <% end %>
