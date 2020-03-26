@@ -59,6 +59,7 @@ class UsersController < ApplicationController
   def explore
     # Sample randomly posts 
   end
+  
 
   private
 
