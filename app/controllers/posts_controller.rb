@@ -50,8 +50,8 @@ class PostsController < ApplicationController
   end
 
   def post_likes
-      @users = Like.select{|l| l.post == @post }
-      render :post_likes
+    @users = Like.select{|l| l.post == @post }
+    render :post_likes
   end 
 
   def destroy
