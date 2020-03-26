@@ -15,27 +15,20 @@
  */
 
 
- h2 {
-     color: red
+ #photo-gallary {
+     padding: 200;
  }
 
- h2 {
-     color: blue
+ #photo-gallary ul {
+     display: flex;
+     flex-wrap: wrap;
+     width: 62.5vw;
+     flex-direction: row; 
+     align-content: center;
  }
 
- h2 .class {
-     color: violet
- }
-
- .im-a-class {
-     color: yellow
- }
-
- #im-a-id {
-     color:green
- }
-
- .post {
-     height: 200px;
-     width: 200px;
- }
+ #photo-gallary ul li {
+    flex: 0 0 33%;
+    list-style-type: none;
+    align-items: center;
+  }
