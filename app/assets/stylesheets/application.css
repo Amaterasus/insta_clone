@@ -13,12 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
-
- #photo-gallary {
-     padding: 200;
- }
-
+ 
  #photo-gallary ul {
      display: flex;
      flex-wrap: wrap;
