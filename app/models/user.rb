@@ -13,5 +13,14 @@ class User < ApplicationRecord
     validates :user_name, presence: true, uniqueness: true 
     validates :bio,   length: { maximum: 300 } #maximum characters 300
 
+    def followee_recent_posts
+        users = (Follow.select{ |f| f.follower == self }).map{ |f| User.find(f.followee_id) }
+        users_posts = []
+        users.each do |u|
+            users_posts << u.posts
+        end
+        users_posts.flatten.sort_by { |post| post.created_at }
+    end
+
 
 end

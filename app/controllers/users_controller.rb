@@ -51,6 +51,15 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def home
+    @posts = current_user.followee_recent_posts
+    render :'posts/index'
+  end
+
+  def explore
+    # Sample randomly posts 
+  end
+
   private
 
   def find_user
