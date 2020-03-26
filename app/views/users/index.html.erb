@@ -4,10 +4,10 @@
         <% if @users == [] %>
             This User has 0 Followers.
         <% else %>
-            <li>
-                <% @users.each do |uf| %> 
+            <% @users.each do |uf| %> 
+                <li>
                     <%= link_to uf.follower.user_name, user_path(uf.follower) %> 
-                <% end %>
-            </li>
+                </li>
+            <% end %>
         <% end %>
 </ul>

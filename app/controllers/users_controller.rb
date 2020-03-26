@@ -63,22 +63,23 @@ class UsersController < ApplicationController
   end
 
   def change_password 
-     
   end 
 
   def update_password
     @user= current_user
     if @user.authenticate(params[:user][:current_password])
       if @user.update(update_password_params)
-        redirect_to home_path
+        flash[:errors] ||= []
+        flash[:errors] << "Password Updated"
+        redirect_to edit_user_path(@user)
       else 
         flash[:errors] = @user.errors.full_messages
         byebug
         redirect_to change_password_path
       end
     else 
-       flash[:errors] ||= []
-       flash[:errors] << "The password entered does not match your current password"
+      flash[:errors] ||= []
+      flash[:errors] << "The password entered does not match your current password"
       redirect_to change_password_path
     end 
   end 
