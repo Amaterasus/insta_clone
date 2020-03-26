@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "/users/change_password", to: "users#change_password", as: "change_password"
   resources :posts
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update,]
 
   get "/login", to: "sessions#login"
   post "/login", to: "sessions#login_verify"
@@ -19,7 +20,9 @@ Rails.application.routes.draw do
 
   get "/users/:id/user_followers", to: "users#user_followers", as: "user_followers"
   get "/users/:id/user_followees", to: "users#user_followees", as: "user_followees"
-  get "users/:id/change_password", to: "users#change_password", as: "change_password"
+  # get "users/:id/change_password", to: "users#change_password", as: "change_password"
+  
+
   post "users/update_password", to:"users#update_password", as: "update_password"
   post "users/:id/follow", to: "users#follow", as: "follow"
   post "users/:id/unfollow", to: "users#unfollow", as: "unfollow"
