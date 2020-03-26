@@ -8,7 +8,7 @@
 
     <h2><%= @post.title%></h2>
 
-    <%= image_tag(@post.image) %>
+    <%= image_tag(@post.image, height: '380', width: '450') %>
 
     <p><%= @post.likes.count %> likes</p>
 
