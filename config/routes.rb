@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "/signup", to: "sessions#signup"
   post "/signup", to: "users#create"
 
+  get "/explore", to: "users#explore", as: "explore"
+  get "/home", to: "users#home", as: "home"
+
   post "posts/:id/like", to: "posts#like", as: "like"
   post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
 
