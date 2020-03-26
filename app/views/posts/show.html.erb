@@ -15,9 +15,9 @@
   
 
     <% if @post.likes.count == 1 %> 
-        <p><%= @post.likes.count %><%=link_to "like", post_likes_path(@post)%></p>
+        <p><%= @post.likes.count %> <%=link_to "like", post_likes_path(@post)%></p>
     <% else %>
-        <p><%= @post.likes.count %><%=link_to "likes", post_likes_path(@post)%></p>
+        <p><%= @post.likes.count %> <%=link_to "likes", post_likes_path(@post)%></p>
     <% end %>
         <% if is_user?(@post.user) %>
         <% else %>
