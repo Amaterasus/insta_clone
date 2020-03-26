@@ -22,9 +22,9 @@
         <% if logged_in? %>
 
           <p>@<%= current_user.user_name %> <%= link_to "My Profile",  user_path(current_user) %> <%= link_to "Edit Profile", edit_user_path(current_user) %></p>
-
-          <%= form_tag('/logout') do %>
+            <%= form_tag('/logout') do %>
             <%= submit_tag 'Log Out' %>
+            <%= link_to "Create New Post", new_post_path %>
           <% end %>
 
         <% else %>
