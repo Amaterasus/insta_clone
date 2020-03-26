@@ -13,10 +13,12 @@ Rails.application.routes.draw do
 
   post "posts/:id/like", to: "posts#like", as: "like"
   post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
+  get "posts/:id/post_likes", to: "posts#post_likes", as: "post_likes"
 
   get "/users/:id/user_followers", to: "users#user_followers", as: "user_followers"
   get "/users/:id/user_followees", to: "users#user_followees", as: "user_followees"
   post "users/:id/follow", to: "users#follow", as: "follow"
   post "users/:id/unfollow", to: "users#unfollow", as: "unfollow"
+  
 
 end

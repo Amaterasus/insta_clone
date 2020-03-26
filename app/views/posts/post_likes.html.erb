@@ -1,0 +1,13 @@
+<h3>This Post was liked by the following users: </h3>
+
+<ul>
+        <% if @users == [] %>
+            This post has no likes.
+        <% else %>
+            <li>
+                <% @users.each do |ul| %> 
+                    <%= link_to ul.user.user_name, user_path(ul.user) %> 
+                <% end %>
+            </li>
+        <% end %>
+</ul>

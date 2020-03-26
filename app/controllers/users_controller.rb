@@ -51,6 +51,8 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  
+
   private
 
   def find_user

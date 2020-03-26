@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authorized
-  before_action :find_post, only: [:show, :edit, :update, :like, :unlike]
+  before_action :find_post, only: [:show, :edit, :update, :like, :unlike, :post_likes]
 
   def index
     @posts = Post.all
@@ -48,6 +48,11 @@ class PostsController < ApplicationController
     Like.find_by(user: current_user, post: @post).destroy
     redirect_to @post
   end
+
+  def post_likes
+      @users = Like.select{|l| l.post == @post }
+      render :post_likes
+  end 
 
   def destroy
   end
