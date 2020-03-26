@@ -32,14 +32,14 @@ class UsersController < ApplicationController
   end
 
   def user_followers
-    @users = Follow.select{ |f| f.followee == @user }
+    @users = Follow.select { |f| f.followee == @user }
     render :index
-  end 
-  
+  end
+
   def user_followees
-    @users = Follow.select{ |f| f.follower == @user }
+    @users = Follow.select { |f| f.follower == @user }
     render :followings
-  end 
+  end
 
   def follow
     Follow.create(follower: current_user, followee: @user)
@@ -57,9 +57,10 @@ class UsersController < ApplicationController
   end
 
   def explore
-    # Sample randomly posts 
+    # Sample randomly posts
+    @posts = Post.explore_posts
+    render :'posts/index'
   end
-  
 
   private
 
@@ -74,5 +75,4 @@ class UsersController < ApplicationController
   def edit_user_params
     params.require(:user).permit(:bio)
   end
-
 end

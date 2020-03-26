@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   has_many :comments
   validates :title, presence: true
   validates :image, presence: true
+
+  def self.explore_posts
+    Post.order(Arel.sql("RANDOM()")).limit(20)
+  end
 end
