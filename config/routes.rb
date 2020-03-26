@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   post "users/:id/follow", to: "users#follow", as: "follow"
   post "users/:id/unfollow", to: "users#unfollow", as: "unfollow"
 
+  post "posts/:id/comment", to: "posts#make_comment", as: "make_comment"
+
 end

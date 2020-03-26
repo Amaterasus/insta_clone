@@ -20,6 +20,14 @@
             <%= button_to "Like", like_path(@post.id) %>
         <% end %>
     <% end %>
-
-</div>
-
+        <%= form_with model: @comment, url: make_comment_path do |f|%>
+        <%= f.text_area :content %><br>
+        <%= f.submit "Comment" %>
+    <% end %>
+<ul>
+    <% @post_comments.each do |comment| %>
+        <li>
+            <%= comment.content %> - <%= link_to "@#{comment.user.user_name}", comment.user %>
+        </li>
+    <% end %>
+</ul>
