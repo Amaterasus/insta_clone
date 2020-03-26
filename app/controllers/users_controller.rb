@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authorized, only: [:index, :show, :edit, :update, :destroy]
-  before_action :find_user, only: [:show, :user_followers, :user_followees, :follow, :unfollow, :edit, :update]
+  before_action :authorized, only: [:index, :show, :edit, :update, :destroy,]
+  before_action :find_user, only: [:show, :user_followers, :user_followees, :follow, :unfollow, :edit, :update, :change_password, :update_password]
 
   def edit
   end
@@ -62,6 +62,27 @@ class UsersController < ApplicationController
     render :'posts/index'
   end
 
+  def change_password 
+      unless session[:user_id] == @user.id
+        redirect_to home_path
+      end
+  end 
+
+  def update_password
+    if current_user.authenticate(params[:user][:current_password])
+      if @user.update(update_password_params)
+        redirect_to home_path
+      else 
+        flash[:errors] = @user.errors.full_messages
+        redirect_to change_password_path(@user)
+      end
+    else 
+       flash[:errors] ||= []
+       flash[:errors] << "The password entered does not match your current password"
+      redirect_to change_password_path(@user)
+    end 
+  end 
+
   private
 
   def find_user
@@ -75,4 +96,8 @@ class UsersController < ApplicationController
   def edit_user_params
     params.require(:user).permit(:bio)
   end
+
+  def update_password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end 
 end
