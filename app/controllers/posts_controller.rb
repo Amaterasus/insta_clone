@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :authorized
   before_action :find_post, only: [:show, :edit, :update, :like, :unlike, :make_comment, :post_likes]
-  
 
   def index
     @posts = Post.all
@@ -61,9 +60,9 @@ class PostsController < ApplicationController
   end
 
   def post_likes
-    @users = Like.select{|l| l.post == @post }
+    @users = Like.select { |l| l.post == @post }
     render :post_likes
-  end 
+  end
 
   def destroy
   end
@@ -85,5 +84,4 @@ class PostsController < ApplicationController
   def edit_post_params
     params.require(:post).permit(:title)
   end
-
 end

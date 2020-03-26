@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :users, only: [:show, :edit, :update]
 
-
   get "/login", to: "sessions#login"
   post "/login", to: "sessions#login_verify"
   post "/logout", to: "sessions#logout"
@@ -22,8 +21,6 @@ Rails.application.routes.draw do
   get "/users/:id/user_followees", to: "users#user_followees", as: "user_followees"
   post "users/:id/follow", to: "users#follow", as: "follow"
   post "users/:id/unfollow", to: "users#unfollow", as: "unfollow"
-  
 
   post "posts/:id/comment", to: "posts#make_comment", as: "make_comment"
-
 end

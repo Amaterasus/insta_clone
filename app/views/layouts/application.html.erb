@@ -13,8 +13,6 @@
   </head>
 
 
-
-
   <body>
       <header>
 
@@ -23,7 +21,7 @@
 
           <p>
           @<%= current_user.user_name %> 
-          <%= link_to "Home", home_path(current_user) %>
+          <%= link_to "Home", home_path %>
           <%= link_to "My Profile",  user_path(current_user) %> 
           <%= link_to "Explore", explore_path %>
           <%= link_to "Edit Profile", edit_user_path(current_user) %>
@@ -41,9 +39,6 @@
         <% end %>
 
       </div>
-
-
-
 
         <div style="color: red;">
           <% if flash[:errors] %>
