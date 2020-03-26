@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "/signup", to: "sessions#signup"
   post "/signup", to: "users#create"
 
+  get "/explore", to: "users#explore", as: "explore"
+  get "/home", to: "users#home", as: "home"
+
   post "posts/:id/like", to: "posts#like", as: "like"
   post "posts/:id/unlike", to: "posts#unlike", as: "unlike"
   get "posts/:id/post_likes", to: "posts#post_likes", as: "post_likes"
@@ -20,5 +23,7 @@ Rails.application.routes.draw do
   post "users/:id/follow", to: "users#follow", as: "follow"
   post "users/:id/unfollow", to: "users#unfollow", as: "unfollow"
   
+
+  post "posts/:id/comment", to: "posts#make_comment", as: "make_comment"
 
 end

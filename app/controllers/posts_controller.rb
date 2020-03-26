@@ -1,12 +1,23 @@
 class PostsController < ApplicationController
   before_action :authorized
-  before_action :find_post, only: [:show, :edit, :update, :like, :unlike, :post_likes]
+  before_action :find_post, only: [:show, :edit, :update, :like, :unlike, :make_comment, :post_likes]
+  
 
   def index
     @posts = Post.all
   end
 
   def show
+    @comment = Comment.new
+    @post_comments = Comment.where(post_id: @post.id)
+  end
+
+  def make_comment
+    @comment = Comment.new comment_params
+    @comment.user = current_user
+    @comment.post = @post
+    @comment.save
+    redirect_to @post
   end
 
   def new
@@ -61,6 +72,10 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find_by(id: params[:id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content)
   end
 
   def new_post_params

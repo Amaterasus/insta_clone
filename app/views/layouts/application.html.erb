@@ -21,11 +21,18 @@
       <div>
         <% if logged_in? %>
 
-          <p>@<%= current_user.user_name %> <%= link_to "My Profile",  user_path(current_user) %> <%= link_to "Edit Profile", edit_user_path(current_user) %></p>
-            <%= form_tag('/logout') do %>
+          <p>
+          @<%= current_user.user_name %> 
+          <%= link_to "Home", home_path(current_user) %>
+          <%= link_to "My Profile",  user_path(current_user) %> 
+          <%= link_to "Explore", explore_path %>
+          <%= link_to "Edit Profile", edit_user_path(current_user) %>
+          <%= link_to "Create New Post", new_post_path %>
+          <%= form_tag('/logout') do %>
             <%= submit_tag 'Log Out' %>
-            <%= link_to "Create New Post", new_post_path %>
           <% end %>
+
+          </p>
 
         <% else %>
 
