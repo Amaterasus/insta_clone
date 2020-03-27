@@ -7,6 +7,6 @@ class Post < ApplicationRecord
   validates :image, presence: true
 
   def self.explore_posts
-    Post.order(Arel.sql("RANDOM()")).limit(20)
+    Post.order(Arel.sql("RANDOM()")).limit(24)
   end
 end

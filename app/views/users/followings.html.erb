@@ -1,13 +1,13 @@
 <h3><%= @user.user_name %> follows the following users: </h3>
 
 <ul>
-        <% if @users == [] %>
-            This User follows 0 other Users.
-        <% else %>
+    <% if @users == [] %>
+        This User follows 0 other Users.
+    <% else %>
+        <% @users.each do |uf| %> 
             <li>
-                <% @users.each do |uf| %> 
-                    <%= link_to uf.followee.user_name, user_path(uf.followee) %> 
-                <% end %>
+                <%= link_to uf.user_name, user_path(uf) %> 
             </li>
         <% end %>
+    <% end %>
 </ul>

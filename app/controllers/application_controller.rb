@@ -25,12 +25,12 @@ class ApplicationController < ActionController::Base
 
   def is_followed_by?(page_user)
     # Checks if you are currently following or not
-    Follow.select { |f| (f.follower == current_user) && (f.followee == page_user) } != []
+    current_user.followees.include?(page_user)
   end
 
   def is_liked_by?(page_post)
     # Checks if you are liking
-    Like.select { |f| (f.post == page_post) && (f.user == current_user) } != []
+    page_post.likes.find { |like| like.user == current_user }
   end
 
   def is_user?(page_user)
