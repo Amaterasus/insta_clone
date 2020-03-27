@@ -2,10 +2,8 @@ require "net/http"
 
 User.destroy_all
 Post.destroy_all
-Like.destroy_all
 Follow.destroy_all
-Comment.destroy_all
-Faker::UniqueGenerator.clear
+
 
 start_time = Time.now
 
