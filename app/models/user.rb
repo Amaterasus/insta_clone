@@ -15,7 +15,6 @@ class User < ApplicationRecord
   validates :bio, length: { maximum: 300 } #maximum characters 300
 
   def followee_recent_posts
-    users = (Follow.select { |f| f.follower == self }).map { |f| User.find(f.followee_id) }
-    users.map { |u| u.posts }.flatten.sort_by { |post| post.created_at }.reverse
+    users = self.followees.map { |u| u.posts }.flatten.sort_by { |post| post.created_at }.reverse
   end
 end

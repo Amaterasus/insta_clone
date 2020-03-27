@@ -30,19 +30,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = Post.where(user_id: @user.id)
+    @posts = @user.posts
   end
 
   def destroy
   end
 
   def user_followers
-    @users = Follow.select { |f| f.followee == @user }
+    @users = @user.followers
+    # byebug
     render :index
   end
 
   def user_followees
-    @users = Follow.select { |f| f.follower == @user }
+    @users = @user.followees
     render :followings
   end
 

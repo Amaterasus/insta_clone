@@ -20,30 +20,6 @@
      width: 62.5vw;
      flex-direction: row; 
      align-content: center;
-
-
- h2 {
-     color: red
- }
-
- h2 {
-     color: blue
- }
-
- h4 {
-    color: blue
- }
-
- h2 .class {
-     color: violet
- }
-
- .im-a-class {
-     color: yellow
- }
-
- #im-a-id {
-     color:green
  }
 
  #photo-gallary ul li {

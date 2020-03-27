@@ -1,13 +1,13 @@
 <h3>@<%= @user.user_name %> is followed by: </h3>
 
 <ul>
-        <% if @users == [] %>
-            This User has 0 Followers.
-        <% else %>
-            <% @users.each do |uf| %> 
-                <li>
-                    <%= link_to uf.follower.user_name, user_path(uf.follower) %> 
-                </li>
-            <% end %>
+    <% if @users == [] %>
+        This User has 0 Followers.
+    <% else %>
+        <% @users.each do |uf| %> 
+            <li>
+                <%= link_to uf.user_name, user_path(uf) %> 
+            </li>
         <% end %>
+    <% end %>
 </ul>
