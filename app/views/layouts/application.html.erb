@@ -16,21 +16,22 @@
   <body>
       <header>
 
-      <div>
+      <div id= "top">
         <% if logged_in? %>
-
-          <p>
-          @<%= current_user.user_name %> 
-          <%= link_to "Home", home_path %>
-          <%= link_to "My Profile",  user_path(current_user) %> 
-          <%= link_to "Explore", explore_path %>
-          <%= link_to "Edit Profile", edit_user_path(current_user) %>
-          <%= link_to "Create New Post", new_post_path %>
-          <%= form_tag('/logout') do %>
+    
+          
+          <p class= "userp" > @<%= current_user.user_name %> </p>
+          <p class="links" > <%= link_to "Home", home_path %> </p>
+          <p class="links"> <%= link_to "My Profile",  user_path(current_user) %>  </p>
+          <p class="links"> <%= link_to "Explore", explore_path %>
+          <p class="links"> <%= link_to "Edit Profile", edit_user_path(current_user) %> </p>
+          <p class="links"> <%= link_to "Create New Post", new_post_path %> </p>
+          <br>
+          <p> <%= form_tag('/logout') do %> </p>
             <%= submit_tag 'Log Out' %>
           <% end %>
 
-          </p>
+         
 
         <% else %>
 
