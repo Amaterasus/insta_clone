@@ -27,3 +27,48 @@
     list-style-type: none;
     align-items: center;
   }
+
+
+  /* #top {
+    margin: 10px 3px 30px 5px;
+    width: 80%;
+  } */
+  #top {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    width: 62.5vw;
+
+    }
+  
+   #top .links  {
+    margin: 15px 25px 5px 10px;
+    color: white;
+    color: inherit;
+    /* position: relative; */
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  #top .links:hover {
+    background-color: #30a029;
+  }
+  
+  #top .links:active {
+    box-shadow: none;
+    top: 5px;
+  }
+
+  #top .userp {
+    
+    font-size: larger;
+    margin: 2px;
+    color: #30a029;
+    text-shadow: 1px 0px 0px black;
+  }
+
+  
+
+
