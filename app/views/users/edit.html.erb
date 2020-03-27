@@ -1,0 +1,14 @@
+<h2>Edit your Profile</h2>
+
+<h3>User:@<%= @user.user_name %> </h3>
+
+<%= form_for @user do |f| %>
+
+    <%= f.label :biography %>
+    <%= f.text_area :bio %>
+
+    <%= f.submit "Save" %>
+
+<% end %>
+<br>
+<%= button_to "Change Password", change_password_path, method: :get %>

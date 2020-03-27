@@ -1,0 +1,16 @@
+<%= link_to "Sign Up here", signup_path %>
+
+<h2> Login Page </h2>
+<%= form_tag("/login") do %>
+
+  <%= label_tag :username %>
+  <%= text_field_tag "[user]user_name" %>
+  <br>
+
+  <%= label_tag :password %>
+  <%= password_field_tag "[user]password" %>
+  <br>
+
+  <%= submit_tag "Log In" %>
+<% end %>
+

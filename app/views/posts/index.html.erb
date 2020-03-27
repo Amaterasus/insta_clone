@@ -1,0 +1,11 @@
+<h2>Posts</h2>
+
+<div id="photo-gallary">
+    <ul>
+        <% @posts.each do |post| %>
+            <li>
+                <%= link_to image_tag(post.image, height: '230', width: '300'), post %>
+            </li>
+        <% end %>
+    </ul>
+</div>

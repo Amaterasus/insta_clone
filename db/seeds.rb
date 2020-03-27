@@ -1,7 +1,45 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require "net/http"
+
+User.destroy_all
+Post.destroy_all
+Follow.destroy_all
+Comment.destroy_all
+Like.destroy_all
+
+start_time = Time.now
+
+skye = User.create(user_name: "skye", bio: "Overachieving coder", password: "cat")
+nick = User.create(user_name: "nick", bio: "Greek Man", password: "cat")
+dinno = User.create(user_name: "dinno", bio: "Man in lockdown", password: "cat")
+
+Follow.create(follower: nick, followee: skye)
+Follow.create(follower: nick, followee: dinno)
+Follow.create(follower: skye, followee: nick)
+Follow.create(follower: skye, followee: dinno)
+Follow.create(follower: dinno, followee: nick)
+Follow.create(follower: dinno, followee: skye)
+
+# Posts seeds
+User.all.each do |u|
+    50.times do
+      while true
+        url = URI.parse("https://i.picsum.photos/id/#{(1..1084).to_a.sample}/300/300.jpg")
+        req = Net::HTTP.new(url.host, url.port)
+        req.use_ssl = true
+        res = req.request_head(url.path)
+        if res.code == "200"
+          post = Post.create(title: Faker::Quote.famous_last_words, image: url, user_id: u.id)
+          puts "#{Post.count} posts created"
+          break
+        else
+          puts "ERROR 404 LOOK AGAIN!!!"
+        end
+      end
+    end
+end
+
+post_ids = Post.all.map { |post| post.id }
+
+
+end_time = Time.now
+puts "total time taken #{(end_time - start_time).round(2)} seconds"

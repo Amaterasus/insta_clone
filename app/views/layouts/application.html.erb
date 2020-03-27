@@ -1,15 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InstaClone 3000</title>
+    <title>InstaClone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+
+    </style>
   </head>
 
+
   <body>
+      <header>
+
+      <div id= "top">
+        <% if logged_in? %>
+    
+          
+          <p class= "userp" > @<%= current_user.user_name %> </p>
+          <p class="links" > <%= link_to "Home", home_path %> </p>
+          <p class="links"> <%= link_to "My Profile",  user_path(current_user) %>  </p>
+          <p class="links"> <%= link_to "Explore", explore_path %>
+          <p class="links"> <%= link_to "Edit Profile", edit_user_path(current_user) %> </p>
+          <p class="links"> <%= link_to "Create New Post", new_post_path %> </p>
+          <br>
+          <p> <%= form_tag('/logout') do %> </p>
+            <%= submit_tag 'Log Out' %>
+          <% end %>
+
+         
+
+        <% else %>
+
+          <p><%= link_to 'Log In', login_path %></p>
+          
+        <% end %>
+
+      </div>
+
+        <div style="color: red;">
+          <% if flash[:errors] %>
+              <ul>
+                <% flash[:errors].each do |error| %>
+                  <li>
+                    <%= error %>
+                  </li>
+                <% end %>
+              </ul>
+          <% end %>
+        </div>
+
+
+      </header>
+
+
     <%= yield %>
+
+
   </body>
+
+
 </html>

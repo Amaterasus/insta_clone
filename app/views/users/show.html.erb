@@ -1,0 +1,26 @@
+<h2>@<%= @user.user_name %></h2>
+<h3>Bio: <%= @user.bio %></h3>
+    <p>
+    Posts: <b><%= @user.posts.count %></b>
+    <%= link_to "Followers:", user_followers_path  %> <%= @user.followers.count %> 
+    <%= link_to "Following:", user_followees_path %> <%= @user.followees.count %>  
+    </p> 
+
+    <% if is_user?(@user) %>
+    <% else %>
+        <% if is_followed_by?(@user) %>
+            <%= button_to "Unfollow", unfollow_path(@user.id) %>
+        <% else %>
+            <%= button_to "Follow", follow_path(@user.id) %>
+        <% end %>
+    <% end %>
+    
+    <div id="photo-gallary">
+        <ul>
+            <% @posts.each do |post| %>
+                <li>
+                    <%= link_to image_tag(post.image, height: '230', width: '300'), post %>
+                </li>
+            <% end %>
+        </ul>
+    </div>

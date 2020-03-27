@@ -1,0 +1,44 @@
+<%= link_to "All Posts", posts_path %>
+
+<% if current_user == @post.user %>
+    <%= link_to "Edit Post", edit_post_path %>
+<% end %>
+
+<div class='post'>
+
+    <h2><%= @post.title%></h2>
+    <h3>@<%=link_to @post.user.user_name,user_path(@post.user)%></h3>
+
+
+    <%= image_tag(@post.image, height: '380', width: '450') %>
+
+  
+
+    <% if @post.likes.count == 1 %> 
+        <p><%= @post.likes.count %> <%=link_to "like", post_likes_path(@post)%></p>
+    <% else %>
+        <p><%= @post.likes.count %> <%=link_to "likes", post_likes_path(@post)%></p>
+    <% end %>
+        <% if is_user?(@post.user) %>
+        <% else %>
+            <% if is_liked_by?(@post) %>
+                <%= button_to "Unlike", unlike_path(@post.id) %>
+            <% else %>
+                <%= button_to "Like", like_path(@post.id) %>
+            <% end %>
+        <% end %>
+    
+        <%= form_with model: @comment, url: make_comment_path do |f|%>
+        <%= f.text_area :content %><br>
+        <%= f.submit "Comment" %>
+        <% end %>
+<ul>
+    <% @post_comments.each do |comment| %>
+        <li>
+            <%= comment.content %> - <%= link_to "@#{comment.user.user_name}", comment.user %>
+        </li>
+    <% end %>
+</ul>
+
+</div>
+
