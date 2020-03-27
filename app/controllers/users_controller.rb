@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authorized, only: [:index, :show, :edit, :update, :destroy, :user_followers, :user_followees ]
+  before_action :authorized, only: [:index, :show, :edit, :update, :destroy, :user_followers, :user_followees, :home, :explore]
   before_action :find_user, only: [:show, :user_followers, :user_followees, :follow, :unfollow, :edit, :update]
 
   def edit

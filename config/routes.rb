@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :users, only: [:show, :edit, :update,]
 
+  root to: "users#explore"
+
   get "/login", to: "sessions#login"
   post "/login", to: "sessions#login_verify"
   post "/logout", to: "sessions#logout"
