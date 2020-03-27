@@ -3,7 +3,8 @@ require "net/http"
 User.destroy_all
 Post.destroy_all
 Follow.destroy_all
-
+Comment.destroy_all
+Like.destroy_all
 
 start_time = Time.now
 
@@ -17,8 +18,6 @@ Follow.create(follower: skye, followee: nick)
 Follow.create(follower: skye, followee: dinno)
 Follow.create(follower: dinno, followee: nick)
 Follow.create(follower: dinno, followee: skye)
-
-user_ids = User.all.map { |user| user.id }
 
 # Posts seeds
 User.all.each do |u|
