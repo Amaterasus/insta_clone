@@ -4,10 +4,10 @@
         <% if @users == [] %>
             This post has no likes.
         <% else %>
-            <li>
-                <% @users.each do |ul| %> 
+            <% @users.each do |ul| %> 
+                <li>
                     <%= link_to ul.user.user_name, user_path(ul.user) %> 
-                <% end %>
-            </li>
-        <% end %>
+                </li>
+            <% end %>
+         <% end %>
 </ul>
