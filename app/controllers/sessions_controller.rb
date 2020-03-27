@@ -19,11 +19,13 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       # Will put my followers posts path or soemthing like that
-      redirect_to posts_path
+      redirect_to home_path
     else
       flash[:errors] ||= []
       flash[:errors] << "Username or Password is incorrect. Please Try Again."
       redirect_to login_path
     end
   end
+
+ 
 end
